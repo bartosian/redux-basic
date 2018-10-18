@@ -113,7 +113,12 @@ const store = createStore(rootReducer);
     );
 }
 
-ReactDOM.render(<TodoApp
-                todos={ store.getState().todoState }
-                onToggleTodo={ id => store.dispatch(doToggleTodo(id))}
-/>, document.getElementById('root'));
+function render() {
+    ReactDOM.render(<TodoApp
+        todos={ store.getState().todoState }
+        onToggleTodo={ id => store.dispatch(doToggleTodo(id))}
+    />, document.getElementById('root'));
+}
+
+store.subscribe(render);
+render();
