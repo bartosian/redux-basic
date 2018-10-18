@@ -50,6 +50,28 @@ function applySetFilter(state, action) {
     return action.filter;
 }
 
+function doAddTodo(id, name) {
+    return {
+        type: TODO_ADD,
+        todo: {id, name}
+    };
+}
+
+function doToggleTodo(id) {
+    return {
+      type: TODO_TOGGLE,
+      todo: {id}
+    };
+}
+
+function doSetFilter(filter) {
+    return {
+        type: FILTER_SET,
+        filter,
+    };
+}
+
+
     function TodoApp() {
     return <div>Todo App</div>;
 }
