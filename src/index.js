@@ -15,7 +15,7 @@ const todos = [
 function todoReducer(state=todos, action) {
     switch (action.type) {
         case TODO_ADD: {
-            return applyAddToDO(state, action);
+            return applyAddToDo(state, action);
         }
 
         case TODO_TOGGLE : {
@@ -25,8 +25,19 @@ function todoReducer(state=todos, action) {
     }
 }
 
+function applyAddToDo(state, action) {
+    const todo = Object.assign({}, action.todo, { completed: false });
+    return state.concat(todo);
+}
 
-function TodoApp() {
+function applyToggleTodo(state, action) {
+    return state.map(todo => todo.id === action.todo.id
+        ? Object.assign({}, todo, { completed: !todo.completed })
+        : todo
+    );
+}
+
+    function TodoApp() {
     return <div>Todo App</div>;
 }
 
