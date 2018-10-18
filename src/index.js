@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { combineReducers, createStore } from 'redux';
+import { Provider } from 'react-redux';
 import './index.css';
 
 const TODO_ADD = 'TODO_ADD';
@@ -113,12 +114,11 @@ const store = createStore(rootReducer);
     );
 }
 
-function render() {
-    ReactDOM.render(<TodoApp
-        todos={ store.getState().todoState }
-        onToggleTodo={ id => store.dispatch(doToggleTodo(id))}
-    />, document.getElementById('root'));
-}
+    ReactDOM.render(
+        <Provider store={ store }>
+            <TodoApp
+            todos={ store.getState().todoState }
+            onToggleTodo={ id => store.dispatch(doToggleTodo(id))}
+             />
+        </Provider>, document.getElementById('root'));
 
-store.subscribe(render);
-render();
