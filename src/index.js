@@ -71,6 +71,13 @@ function doSetFilter(filter) {
     };
 }
 
+const rootReducer = combineReducers({
+    todoState: todoReducer,
+    filterState: filterReducer
+});
+
+const store = createStore(rootReducer);
+
 
     function TodoApp() {
     return <div>Todo App</div>;
