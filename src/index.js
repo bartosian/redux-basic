@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { combineReducers, createStore } from 'redux';
-import { Provider } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 import './index.css';
 
 const TODO_ADD = 'TODO_ADD';
@@ -87,6 +87,21 @@ const store = createStore(rootReducer);
     />;
     }
 
+    function mapStateToProps(state) {
+       return {
+           todos: state.todoState
+       };
+    }
+
+    function mapDispatchToProps(dispatch) {
+       return {
+           onToggleTodo: id => dispatch(doToggleTodo(id))
+       };
+    }
+
+
+    const ConnectedTodoApp = connect(mapStateToProps, mapDispatchToProps)(TodoApp);
+
     function TodoList({ todos, onToggleTodo }) {
     return (
         <div>
@@ -116,9 +131,6 @@ const store = createStore(rootReducer);
 
     ReactDOM.render(
         <Provider store={ store }>
-            <TodoApp
-            todos={ store.getState().todoState }
-            onToggleTodo={ id => store.dispatch(doToggleTodo(id))}
-             />
+            <ConnectedTodoApp/>
         </Provider>, document.getElementById('root'));
 
