@@ -11,11 +11,19 @@ const FILTER_SET = 'FILTER_SET';
 const logger = createLogger();
 
 const todos = [
-    {id:0, name: "Learn redux"},
-    {id:1, name: "Buy new bag"}
+    { id: '1', name: 'Hands On: Redux Standalone with advanced Actions' },
+    { id: '2', name: 'Hands On: Redux Standalone with advanced Reducers' },
+    { id: '3', name: 'Hands On: Bootstrap App with Redux' },
+    { id: '4', name: 'Hands On: Naive Todo with React and Redux' },
+    { id: '5', name: 'Hands On: Sophisticated Todo with React and Redux' },
+    { id: '6', name: 'Hands On: Connecting State Everywhere' },
+    { id: '7', name: 'Hands On: Todo with advanced Redux' },
+    { id: '8', name: 'Hands On: Todo but more Features' },
+    { id: '9', name: 'Hands On: Todo with Notifications' },
+    { id: '10', name: 'Hands On: Hacker News with Redux' },
 ];
 
-function todoReducer(state=todos, action) {
+    function todoReducer(state=todos, action) {
     switch (action.type) {
         case TODO_ADD: {
             return applyAddToDo(state, action);
