@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux';
 import { createLogger } from 'redux-logger';
+import { schema, normalize } from 'normalizr';
 import './index.css';
 
 const TODO_ADD = 'TODO_ADD';
 const TODO_TOGGLE = 'TODO_TOGGLE';
 const FILTER_SET = 'FILTER_SET';
 const logger = createLogger();
+const todoSchema = new schema.Entity('todo');
+
 
 const todos = [
     { id: '1', name: 'Hands On: Redux Standalone with advanced Actions' },
@@ -23,7 +26,14 @@ const todos = [
     { id: '10', name: 'Hands On: Hacker News with Redux' },
 ];
 
-    function todoReducer(state=todos, action) {
+const normalizedTodos = normalize(todos, [todoSchema]);
+console.log(normalizedTodos);
+const initialTodoState = {
+    entities: normalizedTodos.entities.todo,
+    ids: normalizedTodos.result,
+};
+
+    function todoReducer(state=initialTodoState, action) {
     switch (action.type) {
         case TODO_ADD: {
             return applyAddToDo(state, action);
