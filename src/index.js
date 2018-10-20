@@ -29,8 +29,8 @@ function todoReducer(state=todos, action) {
 }
 
 function applyAddToDo(state, action) {
-    const todo = Object.assign({}, action.todo, { completed: false });
-    return state.concat(todo);
+    const todo = { ...action.todo, completed: false };
+    return [...state, todo];
 }
 
 function applyToggleTodo(state, action) {
