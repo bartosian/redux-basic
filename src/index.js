@@ -35,7 +35,7 @@ function applyAddToDo(state, action) {
 
 function applyToggleTodo(state, action) {
     return state.map(todo => todo.id === action.todo.id
-        ? Object.assign({}, todo, { completed: !todo.completed })
+        ? { ...todo,  completed: !todo.completed }
         : todo
     );
 }
